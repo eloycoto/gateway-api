@@ -2234,6 +2234,115 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="networking.x-k8s.io/v1alpha1.HTTPRequestAuthorization">HTTPRequestAuthorization
+</h3>
+<p>
+(<em>Appears on:</em>
+<a href="#networking.x-k8s.io/v1alpha1.HTTPRouteFilter">HTTPRouteFilter</a>)
+</p>
+<p>
+<p>HTTPRequestAuthorization defines configuration for the RequestAuthorization filter.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>url</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<p>URL specifies the address of the service used to perform the authorization check.</p>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocol</code></br>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Protocol is used to define the Protocol that the gateway will use to communicate with the authorization
+service. If not set, it will default to &ldquo;http&rdquo; or inferred from the scheme in URL.
+Examples: &ldquo;grpc&rdquo;,&ldquo;http2&rdquo;</p>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>failModeAllow</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>FailModeAllow defines how this authorization filter should be handled if it timeouts or fails to
+contact the URL defined. This field accepts two options:</p>
+<ul>
+<li>True: Fail open. Traffic will be allowed even if URL can&rsquo;t be contacted or timeouts</li>
+<li>False: Fail closed. Default value. Traffic will be denied if the gateway can&rsquo;t reach the URL or timeouts.</li>
+</ul>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>requestBody</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RequestBody allows to define if the body of the request should be sent to the authorization service.</p>
+<ul>
+<li>True: The request body will be sent to the authorization endpoint.</li>
+<li>False: Don&rsquo;t send the request body. Default value.</li>
+</ul>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeoutMs</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>TimeoutMs is the duration that the authorization call is allowed to operate.
+Default if unset is 100</p>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>metadata</code></br>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Metadata can be used to provide additional context information for the authorization
+service to make a decision.</p>
+<p>Support: Extended</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="networking.x-k8s.io/v1alpha1.HTTPRequestHeaderFilter">HTTPRequestHeaderFilter
 </h3>
 <p>
@@ -2459,6 +2568,21 @@ HTTPRequestMirrorFilter
 <td>
 <em>(Optional)</em>
 <p>RequestMirror defines a schema for a filter that mirrors requests.</p>
+<p>Support: Extended</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>requestAuthorization</code></br>
+<em>
+<a href="#networking.x-k8s.io/v1alpha1.HTTPRequestAuthorization">
+HTTPRequestAuthorization
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>RequestAuhtorization defines a schema for a filter that authorizes requests.</p>
 <p>Support: Extended</p>
 </td>
 </tr>
