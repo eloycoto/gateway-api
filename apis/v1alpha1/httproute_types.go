@@ -409,7 +409,7 @@ type HTTPRouteFilter struct {
 }
 
 // HTTPRouteFilterType identifies a type of HTTPRoute filter.
-// +kubebuilder:validation:Enum=RequestHeaderModifier;RequestMirror;ExtensionRef
+// +kubebuilder:validation:Enum=RequestHeaderModifier;RequestMirror;ExtensionRef;RequestAuthorization
 type HTTPRouteFilterType string
 
 const (
@@ -535,8 +535,8 @@ type HTTPRequestAuthorization struct {
 
 	// Protocol is used to define the Protocol that the gateway will use to communicate with the authorization
 	// service. If not set, it will default to "http" or inferred from the scheme in URL.
-    // Examples: "grpc","http2"
-    //
+	// Examples: "grpc","http2"
+	//
 	// Support: Extended
 	//
 	// +optional
